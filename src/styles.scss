@@ -1,0 +1,45 @@
+// import fonts 
+@import 'assets/fonts/modules/_fonts.scss';
+
+// import custom bootstrap
+@import 'assets/sass/custom-bootstrap.scss';
+
+// import bootstrap
+@import '~bootstrap/scss/bootstrap.scss';
+
+@import '~css-star-rating/scss/star-rating.scss';
+
+// variables
+$primary-font: "Poppins";
+$secondary-font: "Roboto";
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 90% !important; // 1rem = 16px default value
+  
+  @media (max-width: 768px) {
+    font-size: 65% !important;
+  }
+
+  @media (max-width: 576px) {
+    font-size: 55% !important;
+  }
+}
+
+
+body {
+  font-family: $primary-font, sans-serif;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+    

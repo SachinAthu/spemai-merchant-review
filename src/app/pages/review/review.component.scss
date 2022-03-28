@@ -1,0 +1,64 @@
+.review-root {
+    height: 100vh;
+    min-height: 100vh;
+    width: 100vw;
+    background-color: #E5E5E5;
+    
+    .review-container {
+        height: auto;
+        width: 600px;
+        border-top: 4px solid #144936;
+        background: #FFFFFF;
+        box-shadow: 0px 4px 54px rgba(0, 0, 0, 0.05);
+        
+        .header {
+            background-color: #DCFFEA;
+            padding: 27px 22px;
+
+            .details {
+                .merchant-name {
+                    font-style: normal;
+                    font-weight: 500;
+                    font-size: 16px;
+                    line-height: 24px;
+                    color: #2D3748;
+                    margin: 3px 0px;
+                }
+
+                .product-name {
+                    font-style: normal;
+                    font-weight: 400;
+                    font-size: 14px;
+                    line-height: 21px;
+                    color: #03B149;
+                    margin: 3px 0px;
+                }
+
+                .rating1 {
+                }
+
+            }
+
+            img {
+                width: 90px;
+                height: auto;
+            }
+        }
+
+        .form {
+            padding: 22px;
+
+        }
+    }
+}
+
+
+
+@media (max-width: 768px) {
+    .review-root {
+        .review-container {
+            height: 12rem;
+            width: 100%;
+        }
+    }
+}
