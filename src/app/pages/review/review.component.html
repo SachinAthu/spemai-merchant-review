@@ -2,28 +2,80 @@
     <div class="review-container">
         <div class="d-flex header">
             <div class="w-75 d-flex flex-column justify-content-start align-items-start details">
-                <div>
-                    <span class="merchant-name">Merchant Name here</span>
-                </div>
+                <span class="merchant-name">Merchant Name here</span>
 
-                <div>
-                    <span class="product-name">Product Name</span>
-                </div>
+                <span class="product-name">Product Name</span>
 
-                <div class="d-flex flex-row rating1">
-                    <star-rating [starType]="'icon'" [rating]="2.63"></star-rating>
+                <div class="d-flex justify-content-start align-items-center rating1">
+                    <ngb-rating [rate]="currentRating" [starTemplate]="currentRate" [readonly]="true" [max]="5"></ngb-rating>
+
+                    <span class="current-rating">{{ currentRating | number: '1.1-1' }}</span>
                 </div>
             </div>
 
             <div class="w-25 d-flex justify-content-end align-items-center">
-                <img src="assets/svg/review-header.svg" alt="review header svg">
+                <img src="assets/svg/review-header.svg" alt="Review Header SVG">
             </div>
         </div>
 
         <div class="form">
-            <form>
-                form 
+            <form [formGroup]="form" (ngSubmit)="submit()">
+                <div class="mb-4 d-flex flex-column">
+                    <label class="form-label">Rate Us <span class="form-required-sign">*</span></label>
+                    <ngb-rating style="margin: -15px 0 -15px 0;" [(rate)]="inputRating" [starTemplate]="inputRate" [max]="5"></ngb-rating>
+                </div>
+
+                <div class="mb-4">
+                    <label for="form_name" class="form-label">Your Name <span class="form-required-sign">*</span></label>
+                    <input type="text" class="form-control" formControlName="name" id="form_name" name="name" placeholder="Write a Name Here"
+                        [ngClass]="{ 'input-error': false }" />
+                </div>
+
+                <div class="mb-4">
+                    <label for="form-gender" class="form-label">Select Your Gender <span class="form-required-sign">*</span></label>
+                    <div class="d-flex justify-content-start align-items-center" id="radio-btn-male">
+                        <div class="radio-btn me-4 radio-btn-male">
+                            <input type="radio" name="gender" formControlName="gender" value="male" id="form-gender-male" class="form-gender-male">
+                            <label for="form-gender-male">
+                                <img src="assets/svg/radio_btn_male.svg" alt="Gender Male Icon">
+                                <p>Male</p>
+                            </label>
+                        </div>
+
+                        <div class="radio-btn radio-btn-female" id="radio-btn-female">
+                            <input type="radio" name="gender" formControlName="gender" value="female" id="form-gender-female">
+                            <label for="form-gender-female">
+                                <img src="assets/svg/radio_btn_female.svg" alt="Gender Female Icon">
+                                <p>Female</p>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mb-4">
+                    <label for="form-review" class="form-label">Write a Review <span class="form-required-sign">*</span></label>
+                    <textarea class="form-control" formControlName="review" id="form-review" name="review" rows="6" placeholder="Enter Your Review"
+                        [ngClass]="{ 'input-error': false }"
+                    ></textarea>
+                </div>
+
+                <div class="mb-4">
+                    <button class="btn btn-primary submit-btn">
+                        Submit Review
+                    </button>
+                </div>
             </form>
         </div>
     </div>
 </div>
+
+
+<ng-template #currentRate let-fill="fill" let-index="index">
+    <span class="star1" [class.full]="fill === 100">
+        <span class="half" [style.width.%]="fill">&#9733;</span>&#9733;
+    </span>
+</ng-template>
+
+<ng-template #inputRate let-fill="fill" let-index="index">
+    <span class="star2" [class.filled]="fill === 100" [class.bad]="index < 1">&#9733;</span>
+</ng-template>

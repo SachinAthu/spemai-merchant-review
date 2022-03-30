@@ -4,10 +4,10 @@
 // import custom bootstrap
 @import 'assets/sass/custom-bootstrap.scss';
 
+
 // import bootstrap
 @import '~bootstrap/scss/bootstrap.scss';
 
-@import '~css-star-rating/scss/star-rating.scss';
 
 // variables
 $primary-font: "Poppins";
@@ -42,4 +42,10 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+// form styles
+.form-required-sign {
+  color: red;
+}
+/////// 
     

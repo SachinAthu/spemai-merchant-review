@@ -1,64 +1,165 @@
 .review-root {
-    height: 100vh;
-    min-height: 100vh;
-    width: 100vw;
-    background-color: #E5E5E5;
-    
-    .review-container {
+  height: 100vh;
+  min-height: 100vh;
+  width: 100vw;
+  background-color: #e5e5e5;
+
+  .review-container {
+    height: auto;
+    width: 500px;
+    border-top: 4px solid #144936;
+    background: #ffffff;
+    box-shadow: 0px 4px 54px rgba(0, 0, 0, 0.05);
+
+    .header {
+      background-color: #dcffea;
+      padding: 27px 22px;
+
+      .details {
+        .merchant-name {
+          font-style: normal;
+          font-weight: 500;
+          font-size: 16px;
+          line-height: 24px;
+          color: #2d3748;
+          margin-bottom: 1px;
+        }
+
+        .product-name {
+          font-style: normal;
+          font-weight: 400;
+          font-size: 14px;
+          line-height: 21px;
+          color: #03b149;
+          margin-bottom: 1px;
+        }
+
+        .rating1 {
+          margin: -5px 0px 0px -1px;
+
+          span.current-rating {
+            font-family: "Roboto", sans-serif;
+            font-size: 13px;
+            font-weight: 500;
+            color: #ffb900;
+            margin: 1px 0px 0px 5px;
+          }
+        }
+      }
+
+      img {
+        width: 75px;
         height: auto;
-        width: 600px;
-        border-top: 4px solid #144936;
+      }
+    }
+
+    .form {
+      padding: 22px;
+
+      button.submit-btn {
+        width: 100%;
+        height: 47px;
+        font-size: 16px;
+      }
+    }
+  }
+}
+
+// star rating styles
+
+// current rating
+.star1 {
+  position: relative;
+  display: inline-block;
+  font-size: 22px;
+  color: #d3d3d3;
+}
+
+.full {
+  color: #ffb900;
+}
+
+.half {
+  position: absolute;
+  display: inline-block;
+  overflow: hidden;
+  color: #ffb900;
+}
+// 
+
+// form input rating
+.star2 {
+  font-size: 3rem;
+  color: #F2F2F2;
+  margin: 0px 0px 0px 0px;
+}
+
+.filled {
+  color: #ffb900;
+}
+
+.bad {
+  color: #F2F2F2;
+}
+
+.filled.bad {
+  color: #ffb900;
+}
+// 
+
+//////
+
+
+// gender custom radio button styles
+
+.radio-btn {
+    position: relative;
+
+
+    label {
+        height: 69px;
+        width: 76px;
         background: #FFFFFF;
-        box-shadow: 0px 4px 54px rgba(0, 0, 0, 0.05);
-        
-        .header {
-            background-color: #DCFFEA;
-            padding: 27px 22px;
+        border: 1px solid #A0AEC0;
+        border-radius: 5px;
+        padding: 10px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
 
-            .details {
-                .merchant-name {
-                    font-style: normal;
-                    font-weight: 500;
-                    font-size: 16px;
-                    line-height: 24px;
-                    color: #2D3748;
-                    margin: 3px 0px;
-                }
-
-                .product-name {
-                    font-style: normal;
-                    font-weight: 400;
-                    font-size: 14px;
-                    line-height: 21px;
-                    color: #03B149;
-                    margin: 3px 0px;
-                }
-
-                .rating1 {
-                }
-
-            }
-
-            img {
-                width: 90px;
-                height: auto;
-            }
+        img {
+            width: 25px;
+            height: auto;
         }
 
-        .form {
-            padding: 22px;
-
+        p {
+            font-weight: 400;
+            font-size: 11px;
+            color: #2D3748;
+            margin-bottom: 0;
         }
+    }
+
+    input[type='radio'] {
+        display: none;
     }
 }
 
+input[type='radio']:checked + label {
+    background-color: lightcyan;
+}
+
+////// 
 
 
 @media (max-width: 768px) {
-    .review-root {
-        .review-container {
-            height: 12rem;
-            width: 100%;
-        }
+  .review-root {
+      background-color: #ffffff;
+
+    .review-container {
+      height: 12rem;
+      width: 100%;
     }
+  }
 }

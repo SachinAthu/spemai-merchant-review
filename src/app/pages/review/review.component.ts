@@ -9,11 +9,15 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 })
 export class ReviewComponent implements OnInit {
   id: string = '';
-  form1: FormGroup;
+  form: FormGroup;
+  currentRating: number = 3;
+  inputRating: number = 1;
 
   constructor(private router: Router, private route: ActivatedRoute, private fb: FormBuilder) {
-    this.form1 = this.fb.group({
-      rating: [''],
+    this.form = this.fb.group({
+      name: ['', Validators.required],
+      gender: ['', [Validators.required]],
+      review: ['', [Validators.required]]
     });
   }
 
@@ -22,6 +26,10 @@ export class ReviewComponent implements OnInit {
     // console.log(this.id)
 
 
+  }
+
+  submit() {
+    console.log("submit")
   }
 
 }
