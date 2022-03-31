@@ -1,6 +1,8 @@
+@use '../../../assets/sass/variables';
+
 .redirect-root {
     height: 100vh;
-    font-family: 'Poppins', sans-serif;
+    font-family: variables.$primary-font, sans-serif;
     
     .galleryImg {
       width: 50%;

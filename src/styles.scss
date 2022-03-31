@@ -1,17 +1,14 @@
+// import variables
+@use 'assets/sass/variables';
+
 // import fonts 
-@import 'assets/fonts/modules/_fonts.scss';
+@import 'assets/fonts/fonts.scss';
 
 // import custom bootstrap
 @import 'assets/sass/custom-bootstrap.scss';
 
-
 // import bootstrap
 @import '~bootstrap/scss/bootstrap.scss';
-
-
-// variables
-$primary-font: "Poppins";
-$secondary-font: "Roboto";
 
 *,
 *::before,
@@ -25,22 +22,29 @@ html {
   font-size: 90% !important; // 1rem = 16px default value
   
   @media (max-width: 768px) {
-    font-size: 65% !important;
+    font-size: 85% !important;
   }
 
   @media (max-width: 576px) {
-    font-size: 55% !important;
+    font-size: 75% !important;
   }
 }
 
 
 body {
-  font-family: $primary-font, sans-serif;
+  font-family: variables.$primary-font, sans-serif;
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  background-color: #E5E5E5;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+    
+  @media (max-width: 768px) {
+    background-color: #ffffff;
+  }
+
 }
 
 // form styles

@@ -1,6 +1,9 @@
+// import variables
+@use '../../../assets/sass/variables';
+
 .unauth-root {
     height: 100vh;
-    font-family: 'Poppins', sans-serif;
+    font-family: variables.$primary-font, sans-serif;
     
     .style401 {
       width: 50%;

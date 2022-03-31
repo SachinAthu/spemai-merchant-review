@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "merchant-product-review": {
+    "merchant-review": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -20,7 +20,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/merchant-product-review",
+            "outputPath": "dist/merchant-review",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -72,10 +72,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "merchant-product-review:build:production"
+              "browserTarget": "merchant-review:build:production"
             },
             "development": {
-              "browserTarget": "merchant-product-review:build:development"
+              "browserTarget": "merchant-review:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -83,7 +83,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "merchant-product-review:build"
+            "browserTarget": "merchant-review:build"
           }
         },
         "test": {
@@ -107,5 +107,5 @@
       }
     }
   },
-  "defaultProject": "merchant-product-review"
+  "defaultProject": "merchant-review"
 }
