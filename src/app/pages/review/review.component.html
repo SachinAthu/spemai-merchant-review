@@ -19,20 +19,31 @@
         </div>
 
         <div class="form">
-            <form [formGroup]="form" (ngSubmit)="submit()">
+            <form [formGroup]="form" (ngSubmit)="onSubmit()">
                 <div class="mb-4 d-flex flex-column">
                     <label class="form-label">Rate Us <span class="form-required-sign">*</span></label>
-                    <ngb-rating style="margin: -15px 0 -15px 0;" [(rate)]="inputRating" [starTemplate]="inputRate" [max]="5"></ngb-rating>
+                    
+                    <ngb-rating style="margin: -15px 0 -15px 0;" formControlName="rating" [starTemplate]="inputRate" [max]="5"></ngb-rating>
+                    
+                    <ul class="error-wrapper" *ngIf="rating?.invalid && (rating?.dirty || rating?.touched)">
+                        <li *ngIf="rating?.errors?.['required']">Please give a rating</li>
+                    </ul>
                 </div>
 
                 <div class="mb-4">
                     <label for="form_name" class="form-label">Your Name <span class="form-required-sign">*</span></label>
+                    
                     <input type="text" class="form-control" formControlName="name" id="form_name" name="name" placeholder="Write a Name Here"
-                        [ngClass]="{ 'input-error': false }" />
+                        [ngClass]="inputClasses('name')" />
+                    
+                    <ul class="error-wrapper" *ngIf="name?.invalid && (name?.dirty || name?.touched)">
+                        <li *ngIf="name?.errors?.['required']">Please enter your name</li>
+                    </ul>
                 </div>
 
                 <div class="mb-4">
                     <label for="form-gender" class="form-label">Select Your Gender <span class="form-required-sign">*</span></label>
+                    
                     <div class="d-flex justify-content-start align-items-center" id="radio-btn-male">
                         <div class="radio-btn me-4 radio-btn-male">
                             <input type="radio" name="gender" formControlName="gender" value="male" id="form-gender-male" class="form-gender-male">
@@ -50,18 +61,32 @@
                             </label>
                         </div>
                     </div>
+
+                    <ul class="error-wrapper" *ngIf="gender?.invalid && (gender?.dirty || gender?.touched)">
+                        <li *ngIf="gender?.errors?.['required']">Please select your gender</li>
+                    </ul>
                 </div>
 
                 <div class="mb-4">
                     <label for="form-review" class="form-label">Write a Review <span class="form-required-sign">*</span></label>
+
                     <textarea class="form-control" formControlName="review" id="form-review" name="review" rows="6" placeholder="Enter Your Review"
-                        [ngClass]="{ 'input-error': false }"
+                        [ngClass]="inputClasses('review')"
                     ></textarea>
+
+                   
+                    <ul class="error-wrapper" *ngIf="review?.invalid && (review?.dirty || review?.touched)">
+                        <li *ngIf="review?.errors?.['required']">Please write a review</li>
+                    </ul>
                 </div>
 
                 <div class="mb-4">
-                    <button class="btn btn-primary submit-btn">
-                        Submit Review
+                    <button class="btn btn-primary d-flex justify-content-center align-items-center submit-btn" type="submit" 
+                        [disabled]="form.status === 'INVALID' || isLoading"
+                    >
+                        <ng-container *ngIf="!isLoading; else loadingSpinner">
+                            Submit Review
+                        </ng-container>
                     </button>
                 </div>
             </form>
@@ -78,4 +103,11 @@
 
 <ng-template #inputRate let-fill="fill" let-index="index">
     <span class="star2" [class.filled]="fill === 100" [class.bad]="index < 1">&#9733;</span>
+</ng-template>
+
+<ng-template #loadingSpinner>
+    <ng-container>
+        <span class="spinner-border text-light" role="status" aria-hidden="true"></span>
+        <span class="visually-hidden">Loading...</span>
+    </ng-container>
 </ng-template>
