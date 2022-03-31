@@ -11,7 +11,7 @@ export class ReviewComponent implements OnInit {
   id: string = '';
   form: FormGroup;
   currentRating: number = 3;
-  inputRating: number = 1;
+  inputRating: number = 0;
 
   constructor(private router: Router, private route: ActivatedRoute, private fb: FormBuilder) {
     this.form = this.fb.group({
