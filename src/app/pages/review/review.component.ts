@@ -72,7 +72,7 @@ export class ReviewComponent implements OnInit {
     // verify
     this.reviewService.verifyReview(this.appId, this.transactionId).subscribe({
       next: (res: any) => {
-        // console.log("verifyReview", res);
+        console.log("verifyReview", res);
         this.isPageLoading = false;
 
         if (res?.status === 101 || res?.status === 152) {
@@ -81,6 +81,7 @@ export class ReviewComponent implements OnInit {
         } else {
           this.merchantName = res?.data?.merchant_name;
           this.productName = res?.data?.brand_name;
+          this.currentRating = res?.data?.current_rating;
         }
 
       },
