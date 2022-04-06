@@ -8,20 +8,25 @@ import { NotFoundComponent } from './pages/not-found/not-found.component';
 
 const routes: Routes = [
   {
+    path: 'unauth',
+    component: UnauthComponent,
+    pathMatch: 'full'
+  },
+  {
     path: 'redirect/:id',
     component: RedirectComponent
   },
   {
-    path: 'review/:id',
+    path: ':appId/:transId',
     component: ReviewComponent
   },
   {
-    path: 'unauth',
-    component: UnauthComponent
+    path: ':appId',
+    component: ReviewComponent
   },
   {
     path: '**',
-    component: NotFoundComponent,
+    component: UnauthComponent,
     pathMatch: 'full'
   }
 ];

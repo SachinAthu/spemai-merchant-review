@@ -1,10 +1,12 @@
+<toaster-container [toasterconfig]="config"></toaster-container>
+
 <div class="review-root">
-    <div class="review-container">
+    <div *ngIf="!isPageLoading; else pageLoadingSpinner" class="review-container">
         <div class="d-flex header">
             <div class="w-75 d-flex flex-column justify-content-start align-items-start details">
-                <span class="merchant-name">Merchant Name here</span>
+                <span class="merchant-name">{{ merchantName }}</span>
 
-                <span class="product-name">Product Name</span>
+                <span class="product-name">{{ productName }}</span>
 
                 <div class="d-flex justify-content-start align-items-center rating1">
                     <ngb-rating [rate]="currentRating" [starTemplate]="currentRate" [readonly]="true" [max]="5"></ngb-rating>
@@ -46,7 +48,7 @@
                     
                     <div class="d-flex justify-content-start align-items-center" id="radio-btn-male">
                         <div class="radio-btn me-4 radio-btn-male">
-                            <input type="radio" name="gender" formControlName="gender" value="male" id="form-gender-male" class="form-gender-male">
+                            <input type="radio" name="gender" formControlName="gender" value="MALE" id="form-gender-male" class="form-gender-male">
                             <label for="form-gender-male">
                                 <img src="assets/svg/radio_btn_male.svg" alt="Gender Male Icon">
                                 <p>Male</p>
@@ -54,7 +56,7 @@
                         </div>
 
                         <div class="radio-btn radio-btn-female" id="radio-btn-female">
-                            <input type="radio" name="gender" formControlName="gender" value="female" id="form-gender-female">
+                            <input type="radio" name="gender" formControlName="gender" value="FEMALE" id="form-gender-female">
                             <label for="form-gender-female">
                                 <img src="assets/svg/radio_btn_female.svg" alt="Gender Female Icon">
                                 <p>Female</p>
@@ -94,6 +96,11 @@
     </div>
 </div>
 
+<ng-template #pageLoadingSpinner>
+    <div class="spinner-wrapper">
+        <div class="lds-spinner"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+    </div>
+</ng-template>
 
 <ng-template #currentRate let-fill="fill" let-index="index">
     <span class="star1" [class.full]="fill === 100">
