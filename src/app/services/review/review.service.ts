@@ -11,7 +11,7 @@ export class ReviewService {
 
   verifyReview(appId: string, transactionId: string = '') {
     let url = `review-verify/?a_id=${appId}`
-    if (!transactionId) {
+    if (transactionId) {
       url = url + `&ref=${transactionId}`;
     }
     return this.commonService.putRequest(url, null);
@@ -19,7 +19,7 @@ export class ReviewService {
 
   saveReview(data: any, appId: string, transactionId: string = '') {
     let url = `add-review/?a_id=${appId}`
-    if (!transactionId) {
+    if (transactionId) {
       url = url + `&ref=${transactionId}`;
     }
     return this.commonService.putRequest(url, data);
