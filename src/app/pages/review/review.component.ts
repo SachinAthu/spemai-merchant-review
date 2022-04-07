@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { ToasterService, ToasterConfig } from 'angular2-toaster';
 
 import { ReviewService } from 'src/app/services/review/review.service';
 
@@ -22,7 +21,14 @@ export class ReviewComponent implements OnInit {
   productName: string = '';
   currentRating: number = 0;
 
-  constructor(private router: Router, private route: ActivatedRoute, private fb: FormBuilder, private reviewService: ReviewService, private toasterService: ToasterService) {
+  // success and error modal
+  isModalOpen: boolean = false;
+  isSuccessModal: boolean = false;
+  isClosableModal: boolean = false;
+  modalTitle:string = '';
+  modalBody:string = '';
+
+  constructor(private router: Router, private route: ActivatedRoute, private fb: FormBuilder, private reviewService: ReviewService) {
     this.form = this.fb.group({
       rating: [0, [Validators.required]],
       name: ['', Validators.required],
@@ -32,11 +38,6 @@ export class ReviewComponent implements OnInit {
 
   }
 
-  public config: ToasterConfig = new ToasterConfig({
-      showCloseButton: true, 
-      tapToDismiss: true, 
-      timeout: 5
-  });
 
   get rating() {
     return this.form.get('rating');
@@ -57,7 +58,7 @@ export class ReviewComponent implements OnInit {
   ngOnInit(): void {
     this.appId = this.route.snapshot.params['appId'];
     this.transactionId = this.route.snapshot.params['transId'];
-    console.log(this.appId, this.transactionId)
+    // console.log(this.appId, this.transactionId)
 
     this.verifyReview();
 
@@ -72,22 +73,25 @@ export class ReviewComponent implements OnInit {
     // verify
     this.reviewService.verifyReview(this.appId, this.transactionId).subscribe({
       next: (res: any) => {
-        console.log("verifyReview", res);
+        // console.log("verifyReview", res);
         this.isPageLoading = false;
 
-        if (res?.status === 101 || res?.status === 152) {
-          // unauthorized or can not find request data
-          this.router.navigate(['/unauth']);
-        } else {
+        if (res?.status === 100) {
           this.merchantName = res?.data?.merchant_name;
           this.productName = res?.data?.brand_name;
           this.currentRating = res?.data?.current_rating;
+
+          if(this.transactionId) {
+            this.form.get('name')?.setValue(res?.data?.reviewer_name);
+          }
+        } else {
+          this.router.navigate(['/unauth']);
         }
 
       },
       error: (error: any) => {
         console.log("Error", error);
-        this.toasterService.pop('error', 'Error', 'Internal Server Error!');
+        this.openModal(false, false, 'ERROR!', 'Interal server error. Please try again!');
       }
     });   
   }
@@ -145,26 +149,35 @@ export class ReviewComponent implements OnInit {
         if(res.status === 100) {
           // success
           this.form.reset();
-          this.toasterService.pop('success', 'Success', 'Review Submitted.');
-          alert('Review Submitted.');
+          this.openModal(true, false, 'SUCCESS!', 'Review was successfully submitted.');
         } else if (res.status === 101){
           // unauthorized
           this.router.navigate(['/unauth']);
         } else {
           // server error
-          this.toasterService.pop('error', 'Error', 'Internal Server Error!');
+          this.openModal(false, true, 'ERROR!', 'Interal server error. Please try again!');
         }
         
       },
       error: (error: any) => {
         this.isLoading = false;
         console.log('Error', error);
-        this.toasterService.pop('error', 'Error', 'Internal Server Error!');
+        this.openModal(false, true, 'ERROR!', 'Interal server error. Please try again!');
       }
     });
 
+  }
 
+  openModal(isSuccess: boolean, isClosable: boolean, title: string, body: string) {
+    this.isSuccessModal = isSuccess;
+    this.isClosableModal = isClosable;
+    this.modalTitle = title;
+    this.modalBody = body;
+    this.isModalOpen = true;
+  }
 
+  closeModal() {
+    this.isModalOpen = false;
   }
 
 }

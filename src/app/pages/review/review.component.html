@@ -1,5 +1,3 @@
-<toaster-container [toasterconfig]="config"></toaster-container>
-
 <div class="review-root">
     <div *ngIf="!isPageLoading; else pageLoadingSpinner" class="review-container">
         <div class="d-flex header">
@@ -96,25 +94,42 @@
     </div>
 </div>
 
-<ng-template #pageLoadingSpinner>
-    <div class="spinner-wrapper">
-        <div class="lds-spinner"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
-    </div>
-</ng-template>
 
+<!-- current rate template -->
 <ng-template #currentRate let-fill="fill" let-index="index">
     <span class="star1" [class.full]="fill === 100">
         <span class="half" [style.width.%]="fill">&#9733;</span>&#9733;
     </span>
 </ng-template>
 
+<!-- rating input template -->
 <ng-template #inputRate let-fill="fill" let-index="index">
     <span class="star2" [class.filled]="fill === 100" [class.bad]="index < 1">&#9733;</span>
 </ng-template>
 
+<!-- loading spinner for page -->
+<ng-template #pageLoadingSpinner>
+    <div class="spinner-wrapper">
+        <div class="lds-spinner"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+    </div>
+</ng-template>
+
+<!-- loading spinner for buttons -->
 <ng-template #loadingSpinner>
     <ng-container>
         <span class="spinner-border text-light" role="status" aria-hidden="true"></span>
         <span class="visually-hidden">Loading...</span>
     </ng-container>
 </ng-template>
+
+<!-- success modal -->
+<app-modal 
+    *ngIf="isModalOpen"
+    [isSuccess]="isSuccessModal"
+    [isClosable]="isClosableModal"
+    [title]="modalTitle"
+    [body]="modalBody"
+    (closeModal)="closeModal()"
+></app-modal>
+
+<!-- error modal -->

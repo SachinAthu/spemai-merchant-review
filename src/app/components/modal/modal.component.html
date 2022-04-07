@@ -1,0 +1,15 @@
+<div class="backdrop">
+    <div class="modal-root">
+        <img *ngIf="isClosable" class="close-btn" src="assets/svg/close.svg" alt="Close SVG" (click)="onClose()" />
+
+        <div class="d-flex flex-column align-items-center">
+            <img *ngIf="isSuccess" class="mb-4" src="assets/svg/success.svg" alt="Success SVG">
+            
+            <img *ngIf="!isSuccess" class="mb-4" src="assets/svg/error.svg" alt="Error SVG">
+
+            <h3>{{ title }}</h3>
+            
+            <p>{{ body }}</p>
+        </div>
+    </div>
+</div>

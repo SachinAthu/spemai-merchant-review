@@ -1,0 +1,60 @@
+.backdrop {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.4);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-root {
+    position: relative;
+    width: 24rem;
+    height: auto;
+    background-color: #fff;
+    padding: 25px 20px;
+    background-clip: padding-box;
+    border-radius: 15px;
+    transform: scale(0);
+    transition: all 0.3s ease-in;
+    animation-name: fadein;
+    animation-duration: 0.3s;
+    animation-fill-mode: forwards;
+
+    img.close-btn {
+        position: absolute;
+        top: 8px;
+        right: 8px;
+        width: 25px;
+        cursor: pointer;
+    }
+
+    img {
+        width: 52%;
+    }
+
+    h3 {
+        color: rgba(0, 0, 0, 0.75);
+    }
+
+    p {
+        color: rgba(0, 0, 0, 0.6);
+        font-weight: 500;
+        font-size: 1rem;
+        text-align: center;
+    }
+}
+
+@keyframes fadein {
+    0% {
+        transform: scale(0);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
