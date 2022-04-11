@@ -91,7 +91,7 @@ export class ReviewComponent implements OnInit {
       },
       error: (error: any) => {
         console.log("Error", error);
-        this.openModal(false, false, 'ERROR!', 'Interal server error. Please try again!');
+        this.openModal(false, false, 'ERROR!', 'Internal server error. Please try again!');
       }
     });   
   }
@@ -155,14 +155,14 @@ export class ReviewComponent implements OnInit {
           this.router.navigate(['/unauth']);
         } else {
           // server error
-          this.openModal(false, true, 'ERROR!', 'Interal server error. Please try again!');
+          this.openModal(false, true, 'ERROR!', 'Internal server error. Please try again!');
         }
         
       },
       error: (error: any) => {
         this.isLoading = false;
         console.log('Error', error);
-        this.openModal(false, true, 'ERROR!', 'Interal server error. Please try again!');
+        this.openModal(false, true, 'ERROR!', 'Internal server error. Please try again!');
       }
     });
 

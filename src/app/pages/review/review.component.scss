@@ -44,6 +44,10 @@
             font-weight: 500;
             color: #ffb900;
             margin: 1px 0px 0px 5px;
+
+            @media (max-width: 768px) {
+              font-size: 11px;
+            }
           }
         }
       }
@@ -74,6 +78,10 @@
   display: inline-block;
   font-size: 22px;
   color: #d3d3d3;
+
+  @media (max-width: 768px) {
+    font-size: 19px;
+  }
 }
 
 .full {
